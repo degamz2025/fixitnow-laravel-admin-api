@@ -126,3 +126,12 @@ Route::patch('/web/message/read/{id}', [MessageController::class, 'markAsReadWeb
 Route::get('/api/search-users', [App\Http\Controllers\UserController::class, 'searchUsers']);
 
 Route::post('/api/booking/update-status', [App\Http\Controllers\BookingController::class, 'updateStatus']);
+
+
+Route::get('/api/v2/services', [App\Http\Controllers\ServiceV2Controller::class, 'indexApi']);
+
+Route::get('/api/v2/technicians', [App\Http\Controllers\UserController::class, 'index_technician2']);
+
+Route::post('/api/v2/register3', [App\Http\Controllers\UserController::class, 'register3']);
+
+Route::get('/api/v2/gettechnicians', [App\Http\Controllers\UserController::class, 'getTechnicians']);

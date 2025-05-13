@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\LOG;
@@ -54,6 +55,48 @@ class UserController extends Controller
 		return view('admin.users_technician',compact('users'));
 
 	}
+
+    public function index_technician2()
+    {
+        $shopId = $_GET['shop_id'] ?? null;
+        $technicians = DB::table('technicians')
+            ->join('users', 'technicians.user_id', '=', 'users.id')
+            ->where('users.role', 'technician')
+            ->where('technicians.shop_id', $shopId)
+            ->select(
+                'technicians.id as technician_id',
+                'technicians.user_id as technician_user_id',
+                'technicians.shop_id',
+                'technicians.created_at as technician_created_at',
+                'technicians.updated_at as technician_updated_at',
+                'users.id as user_id',
+                'users.name',
+                'users.firstname',
+                'users.lastname',
+                'users.email',
+                'users.email_verified_at',
+                'users.password',
+                'users.remember_token',
+                'users.created_at as user_created_at',
+                'users.updated_at as user_updated_at',
+                'users.role',
+                'users.status',
+                'users.phone',
+                'users.address_street',
+                'users.address_city',
+                'users.address_state',
+                'users.address_zip_code',
+                'users.image_path',
+                'users.mobile_auth',
+                'users.user_type'
+            )
+            ->get();
+
+            return response()->json(['data' => $technicians], 200);
+
+    }
+
+
     public function index_customer() {
         $users = User::where('role','customer')->get();
 		return view('admin.users_customer',compact('users'));
@@ -246,7 +289,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'firstname'         => 'required|string|max:255',
             'lastname'          => 'required|string|max:255',
-            'email'             => 'required|email|unique:users,email',
+            'email'             => 'required|email|unique:users,email,' . $request->input('technician_id'),
             'password'          => 'required|string|min:6|confirmed',
             'role'              => 'required|string',
             'status'            => ['required', Rule::in(['active', 'inactive'])],
@@ -256,25 +299,59 @@ class UserController extends Controller
             'address_state'     => 'nullable|string',
             'address_zip_code'  => 'nullable|string',
             'mobile_auth'       => 'nullable|string',
+            'shop_id'           => 'nullable|string',
+            'technician_id'     => 'nullable|string',
             'image_path'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
         // Handle image upload
         if ($request->hasFile('image_path')) {
             $image = $request->file('image_path');
             $path = $image->store('profile_images', 'public');
             $validated['image_path'] = '/storage/' . $path;
         }
-
+    
         $validated['name'] = $validated['firstname'] . ' ' . $validated['lastname'];
         $validated['password'] = Hash::make($validated['password']);
-
-        User::create($validated);
-
+    
+        // Create or update user
+        if (!empty($validated['technician_id'])) {
+            $user = User::find($validated['technician_id']);
+            if ($user) {
+                $user->update($validated);
+            } else {
+                return response()->json([
+                    'message' => 'Technician not found.'
+                ], 404);
+            }
+        } else {
+            $user = User::create($validated);
+        }
+    
+        // Insert into technicians table if shop_id is provided
+        if (!empty($validated['shop_id'])) {
+            DB::table('technicians')->updateOrInsert(
+                ['user_id' => $user->id],
+                [
+                    'shop_id' => (int) $validated['shop_id'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+        }
+    
         return response()->json([
-            'message' => 'User registered successfully.'
+            'message' => 'User saved successfully.',
+            'user_id' => $user->id,
         ], 201);
     }
+
+    public function getTechnicians(){
+        $user_id  = $_GET['technician_id'];
+        $user = User::find($user_id);
+        return response()->json($user);
+    }
+    
 
     public function updateImage(Request $request)
     {

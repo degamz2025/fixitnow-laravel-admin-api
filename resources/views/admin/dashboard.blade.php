@@ -77,10 +77,10 @@
     <!-- BEGIN row -->
     <div class="row">
 
-        <div class="col-lg-9">
+        <div class="col-lg-12">
             <div class="panel panel-inverse" data-sortable-id="index-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Website Analytics (Last 7 Days)</h4>
+                    {{-- <h4 class="panel-title">Website Analytics (Last 7 Days)</h4> --}}
 
                 </div>
                 <div class="panel-body pe-1">
@@ -88,97 +88,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
-            <!-- BEGIN card -->
-            <div class="card border-0 mb-3 ">
-                <!-- BEGIN card-body -->
-                <div class="card-body">
-                    <!-- BEGIN title -->
-                    <div class="mb-3 fs-13px">
-                        <b>TOP PRODUCTS BY UNITS SOLD</b>
-                        <span class="ms-2  text-muted"><i class="fa fa-info-circle" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="Top products with units sold" data-bs-placement="top" data-bs-content="Products with the most individual units sold. Includes orders from all sales channels."></i></span>
-                    </div>
-                    <!-- END title -->
-                    <!-- BEGIN product -->
-                    <div class="d-flex align-items-center mb-10px pb-2px">
-                        <div class="widget-img rounded-3 me-10px bg-white p-3px w-40px h-50px">
-                            <div class="h-100 w-100" style="background: url(/assets/img/product/product-8.jpg) center no-repeat; background-size: auto 100%;"></div>
-                        </div>
-                        <div class="text-truncate">
-                            <div  class="fw-bold">Apple iPhone XR (2024)</div>
-                            <div class="text-dark-lighter fs-13px">$799.00</div>
-                        </div>
-                        <div class="ms-auto text-center">
-                            <div class="fw-500"><span data-animation="number" data-value="195">0</span></div>
-                            <div class="text-dark-lighter fs-13px">sold</div>
-                        </div>
-                    </div>
-                    <!-- END product -->
-                    <!-- BEGIN product -->
-                    <div class="d-flex align-items-center mb-10px pb-2px">
-                        <div class="widget-img rounded-3 me-10px bg-white p-3px w-40px h-50px">
-                            <div class="h-100 w-100" style="background: url(/assets/img/product/product-9.jpg) center no-repeat; background-size: auto 100%;"></div>
-                        </div>
-                        <div class="text-truncate">
-                            <div  class="fw-bold">Apple iPhone XS (2024)</div>
-                            <div class="text-dark-lighter fs-13px">$1,199.00</div>
-                        </div>
-                        <div class="ms-auto text-center">
-                            <div class="fw-500"><span data-animation="number" data-value="185">0</span></div>
-                            <div class="text-dark-lighter fs-13px">sold</div>
-                        </div>
-                    </div>
-                    <!-- END product -->
-                    <!-- BEGIN product -->
-                    <div class="d-flex align-items-center mb-10px pb-2px">
-                        <div class="widget-img rounded-3 me-10px bg-white p-3px w-40px h-50px">
-                            <div class="h-100 w-100" style="background: url(/assets/img/product/product-10.jpg) center no-repeat; background-size: auto 100%;"></div>
-                        </div>
-                        <div class="text-truncate">
-                            <div  class="fw-bold">Apple iPhone XS Max (2024)</div>
-                            <div class="text-dark-lighter fs-13px">$3,399</div>
-                        </div>
-                        <div class="ms-auto text-center">
-                            <div class="fw-500"><span data-animation="number" data-value="129">0</span></div>
-                            <div class="text-dark-lighter fs-13px">sold</div>
-                        </div>
-                    </div>
-                    <!-- END product -->
-                    <!-- BEGIN product -->
-                    <div class="d-flex align-items-center mb-10px pb-2px">
-                        <div class="widget-img rounded-3 me-10px bg-white p-3px w-40px h-50px">
-                            <div class="h-100 w-100" style="background: url(/assets/img/product/product-11.jpg) center no-repeat; background-size: auto 100%;"></div>
-                        </div>
-                        <div class="text-truncate">
-                            <div  class="fw-bold">Huawei Y5 (2024)</div>
-                            <div class="text-dark-lighter fs-13px">$99.00</div>
-                        </div>
-                        <div class="ms-auto text-center">
-                            <div class="fw-500"><span data-animation="number" data-value="96">0</span></div>
-                            <div class="text-dark-lighter fs-13px">sold</div>
-                        </div>
-                    </div>
-                    <!-- END product -->
-                    <!-- BEGIN product -->
-                    <div class="d-flex align-items-center">
-                        <div class="widget-img rounded-3 me-10px bg-white p-3px w-40px h-50px">
-                            <div class="h-100 w-100" style="background: url(/assets/img/product/product-12.jpg) center no-repeat; background-size: auto 100%;"></div>
-                        </div>
-                        <div class="text-truncate">
-                            <div  class="fw-bold">Huawei Nova 4 (2024)</div>
-                            <div class="text-dark-lighter fs-13px">$499.00</div>
-                        </div>
-                        <div class="ms-auto text-center">
-                            <div class="fw-500"><span data-animation="number" data-value="55">0</span></div>
-                            <div class="text-dark-lighter fs-13px">sold</div>
-                        </div>
-                    </div>
-                    <!-- END product -->
-                </div>
-                <!-- END card-body -->
-            </div>
-            <!-- END card -->
-        </div>
+
     </div>
     <!-- END row -->
 </div>

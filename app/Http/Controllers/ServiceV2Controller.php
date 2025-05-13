@@ -16,6 +16,13 @@ class ServiceV2Controller extends Controller
 		return view('admin.service_v2',compact('services'));
 	}
 
+    public function indexApi() {
+        // $shops = DB::table('full_service_view')->where('shop_owner_user_status','active')->get();
+        $shopId = $_GET['shop_id'];
+        $services = DB::table('full_service_view')->where('shop_id',$shopId)->get();
+		return response()->json(['data' => $services], 200);
+	}
+
     public function create()
     {
         return view('admin.service_v2.create');
